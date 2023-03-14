@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat|Trirong">
+ <link rel="stylesheet" href="css/styles.css">
+ 
+
+</head>
+<body>
+<div id="wrapper">
+<h2>A Simple Calculator:</h2>
+<h2 id="fun">Math can be fun <i class="fa fa-smile-o" aria-hidden="true"></i></h2>
+
+<div id="dist" class="box"><span id="display">0</span>
+</div>
+
+<div id="calc">
+<div class="square black-border"></div><div class="square black-border"></div><div class="square black-border"></div><div class="square black-border" id="clear" onclick="cl1()">C</div>
+<div id="seven" onclick="op(7)" class="square">7</div><div id="eight" onclick="op(8)" class="square">8</div><div id="nine" onclick="op(9)" class="square">9</div><div id="divide" onclick="oq('/')" class="square">/</div>
+<div id="four" onclick="op(4)" class="square">4</div><div id="five" onclick="op(5)" class="square">5</div><div id="six" onclick="op(6)" class="square">6</div><div id="multiply" onclick="oq('*')" class="square">*</div>
+<div id="one" onclick="op(1)" class="square">1</div><div id="two" onclick="op(2)" class="square">2</div><div id="three" onclick="op(3)" class="square">3</div><div id="add" onclick="oq('+')" class="square">+</div>
+<div id="zero" onclick="op(0)" class="square">0</div><div id="decimal" onclick="decOp()" class="square">.</div><div id="equals" onclick="res()" class="square">=</div><div id="subtract" onclick="oq('-')" class="square">-</div>
+</div>
+</div>
+
+
+<script>
+let disp=document.getElementById("display"); 
+
+function cl1() {
+ disp.innerText=0;
+}
+
+function cl2() {
+ disp.innerText="";
+}
+
+
+function op(val) {
+  if(disp.innerText=="0"){
+  cl2();}
+  disp.innerText+=val;
+}
+
+// handles the sequence of operators allowed to be included consecutively according to user story 13
+function oq(sig) {   
+  let disp=document.getElementById("display");
+  let stri=disp.innerText;
+  let L=stri.length-1;
+  let s1=stri[L];
+  let s2=stri.slice(L-1);
+  let ops1 = (s1=="+") || (s1=="-") || (s1=="*") || (s1=="/");
+  let ops2 = (s2=="+-") || (s2=="--") || (s2=="*-") || (s2=="/-");
+  if(ops2) {
+    disp.innerText=stri.slice(0,L-1)+sig;
+   }
+  else if(ops1) {
+    if(sig=="+" || sig=="*" || sig=="/") {
+       disp.innerText=stri.slice(0,L)+sig;
+     }
+    if(sig=="-") {
+       disp.innerText+=sig;
+     }
+   }
+   if(!ops1) {
+       disp.innerText+=sig;
+   }
+}
+
+// checks if input string already contains a '.'
+function decL(expr) {
+    let spl=expr.split(/[-*\/+]/);
+    let lst=spl[spl.length-1];
+    let pt=/[\.]/;
+    if(lst==""){return false;}
+    else {return !(pt.test(lst));}
+}
+
+// sets a '.' depending on the boolean return value of decL
+function decOp() {
+   let disp=document.getElementById("display");
+   let val=disp.innerText;
+   if(val=="0"){
+      cl2();
+    }
+   if(decL(val)) {
+    disp.innerText+=".";
+   }
+ }
+
+// evaluates the entry string and shows the result
+function res() {
+   let ent=document.getElementById("display");
+   let v=ent.innerText;
+   let res=eval(v);
+   ent.innerText=res;
+} 
+</script> 
+
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body></html>
