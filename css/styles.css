@@ -1,0 +1,112 @@
+html {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #7cfaf4;
+}
+
+h2 {
+  font-family: Montserrat;
+  text-align:center;
+}
+
+#fun {
+  margin-bottom: 75px;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 100px auto;
+  margin-top: 50px;
+  background-color: #7cfaf4;
+  padding: 5%;
+}
+
+.box {
+  width: 404px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: 1px solid white;
+  /* border-radius: 5px;*/
+  height: 100px;
+  font-size: 40px;
+}
+
+#dist {
+  background-color: #ccc;
+  height: 150px;
+  color: #242424;
+}
+
+#clear {
+  font-size: 40px;
+}
+
+#calc {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+background-color: #ccc;
+}
+
+.square {
+  height: 100px;
+  width: 100px;
+  background-color:#242424;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 40px;
+}
+
+.black-border {
+  border: 1px solid #242424;
+  border-radius: 0px;
+}
+
+#display {
+  padding: 30px;
+  font-size: 35px;
+}
+@media screen and (max-width: 550px){
+  .square {
+    width: 70px;
+    height: 70px;
+    font-size: 21px;
+  }
+  .box {
+    height: 70px;
+    width: 282px;
+    font-size: 28px;
+  }
+   #display {
+    padding: 20px;
+    font-size: 24px;
+   }
+
+   #wrapper {
+     margin: 70px auto;
+     margin-top: 36px;
+   }
+
+   #clear {
+     font-size: 28px;
+   }
+
+   #dist {
+      height: 105px;
+   }
+   
+   #fun {
+      margin-bottom: 46px;
+   }
+}
